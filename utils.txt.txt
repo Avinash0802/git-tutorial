@@ -1,1 +1,24 @@
-Utility functions for version 3
+'use strict';
+
+process.stdin.setEncoding('utf-8');
+
+function swap(a, b){
+        //write the code to swap two numbers inside this block
+                       // using array
+        [a,b] = [b,a];
+  
+                       //using third variable -->
+       // a = a*b;
+       // b = a/b;
+       // a = a/b;
+                      //using add and sub
+       // a = a+b;
+       // b = a-b;
+       // a = a-b;
+    
+    
+    //dont change below code
+    console.log('a value is =', a);
+    console.log('b value is =', b)
+}
+
