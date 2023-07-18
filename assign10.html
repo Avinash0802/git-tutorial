@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Category</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    /* Book category container */
+    .category-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    /* Book item styles */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 10px 0;
+      border-bottom: 1px solid #ddd;
+      padding: 5px;
+    }
+
+    strong {
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    /* Form styles */
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="category-container">
+    <h1>Book Category</h1>
+    <!-- Input fields for book title and description -->
+    <input type="text" id="bookTitle" placeholder="Book Title">
+    <input type="text" id="bookDescription" placeholder="Book Description">
+    <button onclick="addBook()">Add Book</button>
+
+    <input type="text" id="searchBox" placeholder="Search...">
+    <ul id="bookList">
+      <!-- Default list of books -->
+      <li><strong>The Great Gatsby</strong><br><p>A novel by F. Scott Fitzgerald, set in the roaring twenties.</p></li>
+      <li><strong>To Kill a Mockingbird</strong><br><p>A classic novel by Harper Lee, dealing with racial injustice.</p></li>
+      <li><strong>Harry Potter and the Sorcerer's Stone</strong><br><p>The first book in J.K. Rowling's Harry Potter series.</p></li>
+      <li><strong>1984</strong><br><p>A dystopian novel by George Orwell, portraying a totalitarian society.</p></li>
+      <li><strong>The Lord of the Rings</strong><br><p>A fantasy epic by J.R.R. Tolkien, set in the fictional world of Middle-earth.</p></li>
+      <!-- Indian books -->
+      <li><strong>The God of Small Things</strong><br><p>Award-winning novel by Arundhati Roy, exploring family and social issues in Kerala.</p></li>
+      <li><strong>Train to Pakistan</strong><br><p>A historical novel by Khushwant Singh, set during the Partition of India in 1947.</p></li>
+      <li><strong>Malgudi Days</strong><br><p>Short story collection by R.K. Narayan, capturing life in the fictional town of Malgudi.</p></li>
+      <li><strong>The White Tiger</strong><br><p>Man Booker Prize-winning novel by Aravind Adiga, offering a darkly humorous view of Indian society.</p></li>
+      <li><strong>Half Girlfriend</strong><br><p>Romantic novel by Chetan Bhagat, exploring modern relationships and aspirations.</p></li>
+    </ul>
+  </div>
+
+  <script>
+    // Function to add a new book with its description
+    function addBook() {
+      const bookTitle = document.getElementById('bookTitle').value;
+      const bookDescription = document.getElementById('bookDescription').value;
+
+      if (bookTitle.trim() !== '') {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `<strong>${bookTitle}</strong><br><p>${bookDescription}</p>`;
+        document.getElementById('bookList').appendChild(listItem);
+
+        // Clear input fields after adding the book
+        document.getElementById('bookTitle').value = '';
+        document.getElementById('bookDescription').value = '';
+      }
+    }
+
+    // Get the input elements and list elements
+    const searchBox = document.getElementById('searchBox');
+    const bookList = document.getElementById('bookList').getElementsByTagName('li');
+
+    // Add event listener to the input box for filtering
+    searchBox.addEventListener('keyup', function () {
+      const searchTerm = searchBox.value.toLowerCase();
+
+      // Loop through the book items to find matches
+      for (let i = 0; i < bookList.length; i++) {
+        const bookText = bookList[i].innerText.toLowerCase();
+
+        // Show or hide books based on whether they match the search string
+        if (bookText.includes(searchTerm)) {
+          bookList[i].style.display = 'block';
+        } else {
+          bookList[i].style.display = 'none';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
